@@ -8,15 +8,22 @@ const HomeRoster = () => {
 
   return (
     <Container>
+      <h1 className="text-start">
+        Seleziona il personaggio e scopri la sua movelist e le sue mosse!
+      </h1>
       <Row className="justify-content-center, m-2">
         {roster.map((character) => (
           <Col xs={2} lg={3} key={character.name} className="g-2 m-1">
-            <Card>
+            <Card className="cardwidth cardheight">
               <div className="bg-dark">
-                <Card.Img variant="top" src={character.picture} />
+                <Card.Img
+                  className="card-img"
+                  variant="top"
+                  src={character.picture}
+                />
               </div>
-              <Card.Body>
-                <Card.Title>{character.name}</Card.Title>
+              <Card.Body className="p-0">
+                <p className="text-center">{character.name}</p>
               </Card.Body>
             </Card>
           </Col>
