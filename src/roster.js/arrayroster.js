@@ -50,7 +50,7 @@ const RosterArray = [
   },
 
   {
-    name: "Armor King",
+    name: "Armor-king",
     picture: armorkingpng,
   },
 
