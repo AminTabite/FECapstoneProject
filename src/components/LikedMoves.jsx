@@ -11,7 +11,7 @@ const LikedMoves = () => {
   const endpoint = "http://localhost:5000/favorites";
   const token = localStorage.getItem("token");
 
-  const GetLikedMoves = async (favoritePayload) => {
+  const GetLikedMoves = async () => {
     setLoading(true);
     try {
       const response = await fetch(endpoint, {
