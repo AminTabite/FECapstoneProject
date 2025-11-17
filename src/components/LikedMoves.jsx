@@ -1,17 +1,15 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 
-const CharactersMovelist = () => {
-  const [moves, setMoves] = useState([]); // Inizializza come array
+const LikedMoves = () => {
+  const [likedMove, setLikedMove] = useState([]);
   const [loading, setLoading] = useState(true);
-  const params = useParams();
 
-  const endpoint = `http://localhost:5000/proxy/tekken/${params.name}`;
+  const endpoint = "http://localhost:5000/favorites";
 
-  const Getmovelist = async () => {
+  const GetLikedMoves = async () => {
     setLoading(true);
     try {
       const response = await fetch(endpoint);
@@ -20,39 +18,19 @@ const CharactersMovelist = () => {
       }
       const data = await response.json();
 
-      //  data e' un array di mosse
-
-      setMoves(data.framesNormal);
+      setLikedMove(data);
       setLoading(false);
       console.log(data);
+
+      //mosse preferite
     } catch (error) {
-      console.log("Errore nella fetch", error);
-    }
-  };
-
-  const endpoint1 = "http://localhost:5000/favorites";
-
-  const PostFavoriteMove = async (payload) => {
-    try {
-      const response = await fetch(endpoint1, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      console.log(data);
-    } catch (error) {
-      console.log("errore nell' aggiunta mosse", error);
+      console.log("Errore nella fetch mosse", error);
     }
   };
 
   useEffect(() => {
-    Getmovelist();
-  }, [params.name]);
+    GetLikedMoves();
+  }, []);
 
   return (
     <Container>
@@ -67,7 +45,7 @@ const CharactersMovelist = () => {
                 <Spinner animation="grow" className="text-info text-center" />
               </div>
             ) : (
-              moves.map((move, index) => (
+              likedMove.map((move, index) => (
                 <ListGroup.Item key={index} className="my-2">
                   <h5>{move.name}</h5>
                   <div>
@@ -91,16 +69,6 @@ const CharactersMovelist = () => {
                   {move.notes && (
                     <pre style={{ whiteSpace: "pre-wrap" }}>{move.notes}</pre>
                   )}
-                  <div
-                    className="justify content center align-content-center"
-                    onClick={() => {
-                      PostFavoriteMove(move);
-                    }}>
-                    <Button className="p2 m2 bg bg-info">
-                      {" "}
-                      aggiungi ai preferiti
-                    </Button>
-                  </div>
                 </ListGroup.Item>
               ))
             )}
@@ -111,4 +79,4 @@ const CharactersMovelist = () => {
   );
 };
 
-export default CharactersMovelist;
+export default LikedMoves;

@@ -16,6 +16,15 @@ const MyNavbar = () => {
             <Link to={"/"} className="nav-link text-light">
               Home
             </Link>
+            <Link to={"/lab"} className="nav-link text-light">
+              Moves to Lab
+            </Link>
+            <Link to={"/register"} className="nav-link text-light">
+              Registrati
+            </Link>
+            <Link to={"/login"} className="nav-link text-light">
+              Login
+            </Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

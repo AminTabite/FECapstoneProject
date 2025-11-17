@@ -23,7 +23,7 @@ const RegistrationLogin = () => {
       const data = await response.json();
       console.log(data);
     } catch (error) {
-      console.error("Errore nella fetch:", error);
+      console.log("Errore nella fetch:", error);
     }
   };
 

@@ -75,7 +75,7 @@ const RosterArray = [
     picture: clivepng,
   },
   {
-    name: "Devil Jin",
+    name: "Devil-jin",
     picture: deviljinpng,
   },
   {
