@@ -8,6 +8,7 @@ const CharactersMovelist = () => {
   const [moves, setMoves] = useState([]); // Inizializza come array
   const [loading, setLoading] = useState(true);
   const params = useParams();
+  const token = localStorage.getItem("token"); //mi serve il token per inserire mosse nei preferiti
 
   const endpoint = `http://localhost:5000/proxy/tekken/${params.name}`;
 
@@ -32,11 +33,15 @@ const CharactersMovelist = () => {
 
   const endpoint1 = "http://localhost:5000/favorites";
 
-  const PostFavoriteMove = async (payload) => {
+  const PostFavoriteMove = async (token, payload) => {
     try {
       const response = await fetch(endpoint1, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+
         body: JSON.stringify(payload),
       });
 
@@ -67,42 +72,49 @@ const CharactersMovelist = () => {
                 <Spinner animation="grow" className="text-info text-center" />
               </div>
             ) : (
-              moves.map((move, index) => (
-                <ListGroup.Item key={index} className="my-2">
-                  <h5>{move.name}</h5>
-                  <div>
-                    <strong>Command ➡️ :</strong> {move.command}
-                  </div>
-                  <div>
-                    <strong>Damage ⚡ :</strong> {move.damage}
-                  </div>
-                  <div>
-                    <strong>Startup 🕙 :</strong> {move.startup}
-                  </div>
-                  <div>
-                    <strong>Block 🛡️ :</strong> {move.block}
-                  </div>
-                  <div>
-                    <strong>Hit 💥 :</strong> {move.hit}
-                  </div>
-                  <div>
-                    <strong>Hit Level 💫 :</strong> {move.hitLevel}
-                  </div>
-                  {move.notes && (
-                    <pre style={{ whiteSpace: "pre-wrap" }}>{move.notes}</pre>
-                  )}
-                  <div
-                    className="justify content center align-content-center"
-                    onClick={() => {
-                      PostFavoriteMove(move);
-                    }}>
-                    <Button className="p2 m2 bg bg-info">
-                      {" "}
-                      aggiungi ai preferiti
-                    </Button>
-                  </div>
-                </ListGroup.Item>
-              ))
+              moves.map((move, index) => {
+                const favoritePayload = {
+                  moveInput: move.command,
+                  characterName: params.name,
+                };
+
+                return (
+                  <ListGroup.Item key={index} className="my-2">
+                    <h5>{move.name}</h5>
+                    <div>
+                      <strong>Command ➡️ :</strong> {move.command}
+                    </div>
+                    <div>
+                      <strong>Damage ⚡ :</strong> {move.damage}
+                    </div>
+                    <div>
+                      <strong>Startup 🕙 :</strong> {move.startup}
+                    </div>
+                    <div>
+                      <strong>Block 🛡️ :</strong> {move.block}
+                    </div>
+                    <div>
+                      <strong>Hit 💥 :</strong> {move.hit}
+                    </div>
+                    <div>
+                      <strong>Hit Level 💫 :</strong> {move.hitLevel}
+                    </div>
+                    {move.notes && (
+                      <pre style={{ whiteSpace: "pre-wrap" }}>{move.notes}</pre>
+                    )}
+                    <div
+                      className="justify content center align-content-center"
+                      onClick={() => {
+                        PostFavoriteMove(token, favoritePayload);
+                      }}>
+                      <Button className="p2 m2 bg bg-info">
+                        {" "}
+                        aggiungi ai preferiti
+                      </Button>
+                    </div>
+                  </ListGroup.Item>
+                );
+              })
             )}
           </ListGroup>
         </Col>

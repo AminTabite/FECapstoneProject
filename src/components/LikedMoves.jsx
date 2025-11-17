@@ -6,13 +6,19 @@ import Spinner from "react-bootstrap/Spinner";
 const LikedMoves = () => {
   const [likedMove, setLikedMove] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refresh, setRefresh] = useState(false);
 
   const endpoint = "http://localhost:5000/favorites";
+  const token = localStorage.getItem("token");
 
-  const GetLikedMoves = async () => {
+  const GetLikedMoves = async (favoritePayload) => {
     setLoading(true);
     try {
-      const response = await fetch(endpoint);
+      const response = await fetch(endpoint, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if (!response.ok) {
         throw new Error(`Errore, status: ${response.status}`);
       }
@@ -28,9 +34,33 @@ const LikedMoves = () => {
     }
   };
 
+  const endpoint2 = "http://localhost:5000/favorites";
+
+  const DeleteFavoriteMove = async (id) => {
+    try {
+      const response = await fetch(`${endpoint2}/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(
+          `Errore nella cancellazione, status: ${response.status}`
+        );
+      }
+      console.log("Mossa preferita cancellata con successo");
+      setRefresh((prev) => !prev); //ritorna allo stato precedente senza la mossa cancellata
+    } catch (error) {
+      console.log("Errore nella delete", error);
+    }
+  };
+
   useEffect(() => {
     GetLikedMoves();
-  }, []);
+  }, [refresh]);
 
   return (
     <Container>
@@ -45,27 +75,24 @@ const LikedMoves = () => {
                 <Spinner animation="grow" className="text-info text-center" />
               </div>
             ) : (
-              likedMove.map((move, index) => (
-                <ListGroup.Item key={index} className="my-2">
-                  <h5>{move.name}</h5>
+              likedMove.map((move, id) => (
+                <ListGroup.Item key={id} className="my-2">
                   <div>
-                    <strong>Command ➡️ :</strong> {move.command}
+                    <strong> Name :</strong> {move.moveInput}
                   </div>
                   <div>
-                    <strong>Damage ⚡ :</strong> {move.damage}
+                    <strong>input :</strong> {move.characterName}
                   </div>
                   <div>
-                    <strong>Startup 🕙 :</strong> {move.startup}
+                    <Button
+                      className="p1 m1 rounded-3 bg-black"
+                      onClick={() => {
+                        DeleteFavoriteMove(move.id, token);
+                      }}>
+                      ✖️
+                    </Button>
                   </div>
-                  <div>
-                    <strong>Block 🛡️ :</strong> {move.block}
-                  </div>
-                  <div>
-                    <strong>Hit 💥 :</strong> {move.hit}
-                  </div>
-                  <div>
-                    <strong>Hit Level 💫 :</strong> {move.hitLevel}
-                  </div>
+
                   {move.notes && (
                     <pre style={{ whiteSpace: "pre-wrap" }}>{move.notes}</pre>
                   )}
