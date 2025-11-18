@@ -9,7 +9,6 @@ const UpdateForm = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
   const [successMsg, setSuccessMsg] = useState(""); //avverte utente della modifica
   const { id } = useParams();
   const token = localStorage.getItem("token");
@@ -71,7 +70,7 @@ const UpdateForm = () => {
         setSuccessMsg("Updated successfully!");
 
         // Optionally, delay navigation to let user see success message
-        setTimeout(() => navigate("/backoffice"), 1500);
+        setTimeout(() => navigate("/"), 1500);
       } catch (error) {
         console.log("errore nel aggiornamento del profilo selezionato", error);
       }
@@ -98,60 +97,68 @@ const UpdateForm = () => {
               <Spinner animation="grow" className="text-info text-center" />
             </div>
           ) : (
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicUsername">
-                <Form.Label>Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-              </Form.Group>
+            <>
+              {successMsg && (
+                <div className="alert alert-success text-center my-2">
+                  {successMsg}
+                </div>
+              )}
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <Form.Text className="text-muted"></Form.Text>
-              </Form.Group>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicUsername">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter username"
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Email address</Form.Label>
+                  <Form.Control
+                    type="email"
+                    placeholder="Enter email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <Form.Text className="text-muted"></Form.Text>
+                </Form.Group>
 
-              <Form.Group className="mb-3" controlId="formBasicRole">
-                <Form.Label>Role</Form.Label>
-                <Form.Select
-                  value={role}
-                  onChange={(e) => {
-                    console.log("Ruolo selezionato:", e.target.value);
-                    setRole(e.target.value);
-                  }}>
-                  <option value="">Seleziona ruolo...</option>
-                  <option value="USER">USER</option>
-                  <option value="ADMIN">ADMIN</option>
-                </Form.Select>
-                <Form.Text className="text-muted"></Form.Text>
-              </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </Form.Group>
 
-              <Button
-                variant="primary"
-                type="submit"
-                className="g1 d-block mb-2 mx-auto my-2">
-                Save changes!
-              </Button>
-            </Form>
+                <Form.Group className="mb-3" controlId="formBasicRole">
+                  <Form.Label>Role</Form.Label>
+                  <Form.Select
+                    value={role}
+                    onChange={(e) => {
+                      console.log("Ruolo selezionato:", e.target.value);
+                      setRole(e.target.value);
+                    }}>
+                    <option value="">Seleziona ruolo...</option>
+                    <option value="USER">USER</option>
+                    <option value="ADMIN">ADMIN</option>
+                  </Form.Select>
+                  <Form.Text className="text-muted"></Form.Text>
+                </Form.Group>
+
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="g1 d-block mb-2 mx-auto my-2">
+                  Save changes!
+                </Button>
+              </Form>
+            </>
           )}
         </Col>
       </Row>

@@ -25,11 +25,13 @@ const MyNavbar = () => {
             <Link to={"/login"} className="nav-link text-light">
               Login
             </Link>
+            <Link to={"/backoffice"} className="nav-link text-light">
+              Management
+            </Link>
+            <Link to={"/edit-me/:id"} className="nav-link text-light">
+              My profile
+            </Link>
           </Nav>
-
-          <Link to={"/backoffice"} className="nav-link text-light">
-            Management
-          </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -7,6 +7,7 @@ import CharactersMovelist from "./components/CharactersMovelist.jsx";
 import LikedMoves from "./components/LikedMoves.jsx";
 import Backoffice from "./components/Backoffice.jsx";
 import UpdateForm from "./components/UpdateForm.jsx";
+import UserProfile from "./components/UserProfile.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/lab" element={<LikedMoves />} />
           <Route path="/backoffice" element={<Backoffice />} />
           <Route path="/edit-user/:id" element={<UpdateForm />} />
+          <Route path="/edit-me/:id" element={<UserProfile />} />
         </Routes>
       </BrowserRouter>
     </>
