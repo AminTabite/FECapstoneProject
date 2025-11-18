@@ -14,7 +14,7 @@ const HomeRoster = () => {
       <h1 className="text-start">
         Seleziona il personaggio e scopri la sua movelist e le sue mosse!
       </h1>
-      <Row className="justify-content-center, m-2">
+      <Row className="justify-content-center, m-auto">
         {roster.map((character) => (
           <Col
             xs={2}

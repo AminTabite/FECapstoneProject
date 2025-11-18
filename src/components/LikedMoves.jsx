@@ -34,11 +34,9 @@ const LikedMoves = () => {
     }
   };
 
-  const endpoint2 = "http://localhost:5000/favorites";
-
   const DeleteFavoriteMove = async (id) => {
     try {
-      const response = await fetch(`${endpoint2}/${id}`, {
+      const response = await fetch(`${endpoint}/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -36,7 +36,7 @@ const UtenteLogin = () => {
   return (
     <>
       <Container>
-        <Row>
+        <Row className="d-flex justify-content-center my-5">
           <Col
             xs={12}
             lg={6}

@@ -5,6 +5,8 @@ import HomeRoster from "./components/HomeRoster.jsx";
 import MyNavbar from "./components/MyNavbar.jsx";
 import CharactersMovelist from "./components/CharactersMovelist.jsx";
 import LikedMoves from "./components/LikedMoves.jsx";
+import Backoffice from "./components/Backoffice.jsx";
+import UpdateForm from "./components/UpdateForm.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -19,6 +21,8 @@ function App() {
           <Route path="/" element={<HomeRoster />} />
           <Route path="/character/:name" element={<CharactersMovelist />} />
           <Route path="/lab" element={<LikedMoves />} />
+          <Route path="/backoffice" element={<Backoffice />} />
+          <Route path="/edit-user/:id" element={<UpdateForm />} />
         </Routes>
       </BrowserRouter>
     </>

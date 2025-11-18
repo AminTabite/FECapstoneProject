@@ -26,6 +26,10 @@ const MyNavbar = () => {
               Login
             </Link>
           </Nav>
+
+          <Link to={"/backoffice"} className="nav-link text-light">
+            Management
+          </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
