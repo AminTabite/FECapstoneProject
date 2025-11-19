@@ -26,16 +26,39 @@ const UserProfile = () => {
       setUser(data);
       setLoading(false);
       console.log(data);
-    } catch (err) {
-      setError("Errore nel caricamento profilo");
+    } catch (error) {
+      setError(
+        "Errore nel caricamento profilo, Hai effettuato la registrazione e il login?"
+      );
       setUser(null);
       setLoading(false);
     }
   };
 
+  const DeleteMyProfile = async () => {
+    try {
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error(
+          `Errore nella cancellazione profilo, status: ${response.status} `
+        );
+      }
+      localStorage.removeItem("token");
+      navigate("/register");
+      console.log("profilo eliminato correttamente");
+    } catch (error) {
+      console.log("Errore nella delete", error);
+    }
+  };
+
   useEffect(() => {
     getProfile();
-    // eslint-disable-next-line
   }, []);
 
   return (
@@ -46,7 +69,7 @@ const UserProfile = () => {
           lg={6}
           className="g1 justify-content-center align-content-center bg-info">
           <h1 className="justify-content-start align-center my-2 purple">
-            Il tuo profilo
+            My profile
           </h1>
           {loading ? (
             <div className="d-flex justify-content-center align-content-center">
@@ -74,7 +97,7 @@ const UserProfile = () => {
                 <Button
                   variant="secondary"
                   className="g1 d-block mb-2 mx-auto my-2"
-                  onClick={() => navigate("/login")}>
+                  onClick={DeleteMyProfile}>
                   Delete
                 </Button>
               </Card.Body>

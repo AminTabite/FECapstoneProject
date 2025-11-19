@@ -1,12 +1,15 @@
 import Form from "react-bootstrap/Form";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 const RegistrationLogin = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+
+  const dispatch = useDispatch();
 
   const endpoint = "http://localhost:5000/auth/register";
 
@@ -31,6 +34,7 @@ const RegistrationLogin = () => {
     e.preventDefault();
     const payload = { username, email, password, role };
     DoRegistration(payload);
+    dispatch({ type: "SET_ROLE", payload: role });
   };
 
   return (

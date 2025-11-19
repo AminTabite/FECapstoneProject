@@ -11,28 +11,27 @@ const MyNavbar = () => {
           TEKKEN DB 👊
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Link to={"/"} className="nav-link text-light">
-              Home
-            </Link>
-            <Link to={"/lab"} className="nav-link text-light">
-              Moves to Lab
-            </Link>
-            <Link to={"/register"} className="nav-link text-light">
-              Registrati
-            </Link>
-            <Link to={"/login"} className="nav-link text-light">
-              Login
-            </Link>
-            <Link to={"/backoffice"} className="nav-link text-light">
-              Management
-            </Link>
-            <Link to={"/edit-me/:id"} className="nav-link text-light">
-              My profile
-            </Link>
-          </Nav>
-        </Navbar.Collapse>
+
+        <Nav className="me-auto">
+          <Link to={"/"} className="nav-link text-light">
+            Home
+          </Link>
+          <Link to={"/lab"} className="nav-link text-light">
+            Moves to Lab
+          </Link>
+          <Link to={"/register"} className="nav-link text-light">
+            Registrati
+          </Link>
+          <Link to={"/login"} className="nav-link text-light">
+            Login
+          </Link>
+          <Link to={"/backoffice"} className="nav-link text-light">
+            Management
+          </Link>
+          <Link to={"/edit-me/:id"} className="nav-link text-light">
+            My profile
+          </Link>
+        </Nav>
       </Container>
     </Navbar>
   );
