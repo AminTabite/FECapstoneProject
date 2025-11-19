@@ -1,8 +1,8 @@
 import { Container, Col, Row, Card, Button } from "react-bootstrap";
-import Mygif from "../assets/2379e26ec290f8b64d533acad52a710b79e4f5fcr1-400-225_hq.gif";
+import Mygif from "../assets/armorking-giantswing-tekken2.gif";
 import { useNavigate } from "react-router-dom";
 
-const NoAuthorization = () => {
+const NotFound = () => {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +15,8 @@ const NoAuthorization = () => {
               alt="gif no autorizzazione"
               style={{ maxWidth: "100%" }}
             />
-            <h5>non hai le autorizzazioni per accedere a questa pagina</h5>
+            <h5>Are you Lost? </h5>
+            <h6>error 404: not found!</h6>
             <Button
               onClick={() => navigate("/")}
               className="m-2 p-2 rounded-0 text-info bg-danger w-25 mx-auto">
@@ -28,4 +29,4 @@ const NoAuthorization = () => {
   );
 };
 
-export default NoAuthorization;
+export default NotFound;

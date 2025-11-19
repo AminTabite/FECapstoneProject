@@ -9,6 +9,7 @@ import Backoffice from "./components/Backoffice.jsx";
 import UpdateForm from "./components/UpdateForm.jsx";
 import UserProfile from "./components/UserProfile.jsx";
 import NoAuthorization from "./components/NoAuthorization.jsx";
+import NotFound from "./components/NotFound.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -32,6 +33,7 @@ function App() {
           />
           <Route path="/edit-user/:id" element={<UpdateForm />} />
           <Route path="/edit-me/:id" element={<UserProfile />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </>
