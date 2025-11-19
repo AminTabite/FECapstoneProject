@@ -1,6 +1,6 @@
 const initialRole = {
   main: {
-    role: "",
+    role: "", //stato del role dello user, si riempira' quando un utente si registra
   },
 };
 

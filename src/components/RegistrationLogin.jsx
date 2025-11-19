@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 import { Container, Col, Row, Button } from "react-bootstrap";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 const RegistrationLogin = () => {
@@ -9,7 +9,7 @@ const RegistrationLogin = () => {
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); //funzione che mi porta un cambio di stato dentro il reducer
 
   const endpoint = "http://localhost:5000/auth/register";
 
