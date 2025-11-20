@@ -61,7 +61,7 @@ const Backoffice = () => {
     <Container>
       <h1>Utenti registrati nel sito</h1>
       <Row>
-        <Col>
+        <Col xs={12} lg={6} className="d-flex justify-content-center">
           {loading ? (
             <div className="d-flex justify-content-center align-content-center">
               <Spinner animation="grow" className="text-info text-center" />
@@ -71,8 +71,11 @@ const Backoffice = () => {
             </div>
           ) : (
             users.map((user, id) => (
-              <Card key={id}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+              <Card key={id} className=" my-2 p-2 g-2 flex-grow-1">
+                <Card.Img
+                  variant="top"
+                  src={"./assets/tekken-1-kazuya-smile.webp"}
+                />
                 <Card.Body>
                   <Card.Title>{user.username}</Card.Title>
                   <Card.Text>{user.email}</Card.Text>

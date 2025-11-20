@@ -11,7 +11,7 @@ const roleReducer = (state = initialRole, action) => {
         ...state,
         main: {
           ...state.main,
-          role: state.main.role + action.payload,
+          role: action.payload,
         },
       };
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import { useDispatch, useSelector } from "react-redux";
 
 const UpdateForm = () => {
   const [username, setUsername] = useState("");
@@ -13,8 +14,9 @@ const UpdateForm = () => {
   const { id } = useParams();
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const dispatch = useDispatch(); //per cambiare ruolo , non si fa ma e' per dimostrazione
 
-  const endpoint = `http://localhost:5000/utenti/${id}`;
+  const endpoint = `http://localhost:5000/utenti/me`;
 
   const getOldUser = async () => {
     setLoading(true);
@@ -69,7 +71,8 @@ const UpdateForm = () => {
         console.log(data);
         setSuccessMsg("Updated successfully!");
 
-        // Optionally, delay navigation to let user see success message
+        dispatch({ type: "SET_ROLE", payload: role });
+
         setTimeout(() => navigate("/"), 1500);
       } catch (error) {
         console.log("errore nel aggiornamento del profilo selezionato", error);
