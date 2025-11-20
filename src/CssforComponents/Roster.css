@@ -1,13 +1,13 @@
 .card-img {
-  height: 256px !important;
-  width: 256px !important;
+  height: 200px !important;
+  width: 100% !important;
   object-fit: cover !important;
 }
 
 .cardwidth {
-  width: 450px;
+  width: 250px !important;
 }
 
 .cardheight {
-  height: 600px;
+  height: 400px !important;
 }

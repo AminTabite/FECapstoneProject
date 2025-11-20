@@ -10,17 +10,19 @@ const HomeRoster = () => {
   console.log(roster);
 
   return (
-    <Container>
-      <h1 className="text-start">
+    <Container fluid className="p-0">
+      <h1 className="text-start titleroster">
         Seleziona il personaggio e scopri la sua movelist e le sue mosse!
       </h1>
-      <Row className="justify-content-center, m-auto">
+      <Row className="justify-content-center m-auto justify-content-start">
         {roster.map((character) => (
           <Col
-            xs={2}
-            lg={3}
+            xs={12}
+            lg={1}
             key={character.name}
-            className="g-2 m-1 flex-grow-0 justify-content-evenly">
+            className="g-2 m-1 flex-grow-0 justify-content-evenly my-1 
+            "
+            style={{ maxWidth: "200px" }}>
             <Card className="cardwidth cardheight">
               <div
                 className="bg-dark"

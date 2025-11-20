@@ -6,7 +6,7 @@ const NoAuthorization = () => {
   const navigate = useNavigate();
 
   return (
-    <Container>
+    <Container fluid className="p-0">
       <Row>
         <Col className="d-flex justify-content-center" xs={12}>
           <div className="d-flex flex-column align-items-center justify-content-center my-5">

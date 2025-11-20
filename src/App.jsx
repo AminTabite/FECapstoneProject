@@ -10,6 +10,7 @@ import UpdateForm from "./components/UpdateForm.jsx";
 import UserProfile from "./components/UserProfile.jsx";
 import NoAuthorization from "./components/NoAuthorization.jsx";
 import NotFound from "./components/NotFound.jsx";
+import MyFooter from "./components/MyFooter.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -20,21 +21,33 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <MyNavbar />
-        <Routes>
-          <Route path="/register" element={<RegistrationLogin />} />
-          <Route path="/login" element={<UtenteLogin />} />
-          <Route path="/" element={<HomeRoster />} />
-          <Route path="/character/:name" element={<CharactersMovelist />} />
-          <Route path="/lab" element={<LikedMoves />} />
-          <Route
-            path="/backoffice"
-            element={role === "ADMIN" ? <Backoffice /> : <NoAuthorization />}
-          />
-          <Route path="/edit-user/:id" element={<UpdateForm />} />
-          <Route path="/edit-me/:id" element={<UserProfile />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <div
+          style={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+          }}>
+          <MyNavbar />
+          <main style={{ flex: 1 }}>
+            <Routes>
+              <Route path="/register" element={<RegistrationLogin />} />
+              <Route path="/login" element={<UtenteLogin />} />
+              <Route path="/" element={<HomeRoster />} />
+              <Route path="/character/:name" element={<CharactersMovelist />} />
+              <Route path="/lab" element={<LikedMoves />} />
+              <Route
+                path="/backoffice"
+                element={
+                  role === "ADMIN" ? <Backoffice /> : <NoAuthorization />
+                }
+              />
+              <Route path="/edit-user/:id" element={<UpdateForm />} />
+              <Route path="/edit-me/:id" element={<UserProfile />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <MyFooter />
+        </div>
       </BrowserRouter>
     </>
   );
