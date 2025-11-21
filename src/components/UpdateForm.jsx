@@ -134,7 +134,7 @@ const UpdateForm = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
-                    value={password}
+                    value=""
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Group>

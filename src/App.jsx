@@ -21,7 +21,7 @@ function App() {
   return (
     <BrowserRouter>
       <MyNavbar />
-      <main>
+      <main className="main">
         <Routes>
           {/* Queste sono le route sempre accessibili */}
           <Route path="/register" element={<RegistrationLogin />} />

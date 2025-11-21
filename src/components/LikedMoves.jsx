@@ -72,6 +72,10 @@ const LikedMoves = () => {
                 <Spinner animation="grow" className="text-danger text-center" />
                 <Spinner animation="grow" className="text-danger text-center" />
               </div>
+            ) : likedMove.length === 0 ? (
+              <div className="alert alert-primary text-center text-danger my-5 bg-light rounded-0">
+                The list is empty, add some moves!
+              </div>
             ) : (
               likedMove.map((move, id) => (
                 <ListGroup.Item key={id} className="my-2">
@@ -105,7 +109,6 @@ const LikedMoves = () => {
                       ✖️
                     </Button>
                   </div>
-
                   {move.notes && (
                     <pre style={{ whiteSpace: "pre-wrap" }}>{move.notes}</pre>
                   )}

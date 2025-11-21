@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 const UtenteLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
 
   const endpoint = "http://localhost:5000/auth/login";
@@ -24,20 +25,30 @@ const UtenteLogin = () => {
       localStorage.setItem("token", data.token);
       console.log("Token salvato:", data.token);
       console.log(data);
+
       navigate("/");
     } catch (error) {
       console.error("Errore nella fetch:", error);
+      setErrorMsg("Error your credentials might be wrong");
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { email, password };
+
     Login(payload);
   };
 
+  useEffect(() => {
+    setErrorMsg("");
+  }, [email, password]);
+
   return (
     <>
+      {errorMsg && (
+        <div className="alert alert-danger text-center my-2">{errorMsg}</div>
+      )}{" "}
       <Container>
         <Row className="d-flex justify-content-center my-5">
           <Col

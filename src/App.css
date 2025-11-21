@@ -19,9 +19,6 @@ body {
 }
 
 #root {
-  width: 100vw;
-  margin: 0;
-  padding: 0;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -37,17 +34,17 @@ main {
   color: rgb(255, 0, 0) !important;
 }
 
-footer a {
+.a {
   text-decoration: none;
   color: rgb(255, 0, 0);
 }
 
-footer * {
+.footer * {
   color: rgb(255, 0, 0);
   background-color: rgb(0, 0, 0);
 }
 
-customMargin {
+.customMargin {
   margin-bottom: 100px;
 }
 /* */
