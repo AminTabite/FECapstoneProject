@@ -24,6 +24,7 @@ const UtenteLogin = () => {
       localStorage.setItem("token", data.token);
       console.log("Token salvato:", data.token);
       console.log(data);
+      navigate("/");
     } catch (error) {
       console.error("Errore nella fetch:", error);
     }
@@ -33,7 +34,6 @@ const UtenteLogin = () => {
     e.preventDefault();
     const payload = { email, password };
     Login(payload);
-    navigate("/");
   };
 
   return (

@@ -60,7 +60,7 @@ const Backoffice = () => {
 
   return (
     <Container>
-      <h1>Utenti registrati nel sito</h1>
+      <h1>Users</h1>
       <Row>
         {loading ? (
           <div className="d-flex justify-content-center align-content-center">
@@ -75,7 +75,7 @@ const Backoffice = () => {
               xs={12}
               lg={3}
               className="d-flex justify-content-center my-3 g-3">
-              <Card key={id} className=" my-2 p-2 g-2 flex-grow-1 text-info">
+              <Card key={id} className=" my-2 p-2 g-2 flex-grow-1 text-dark">
                 <Card.Img
                   variant="top"
                   className="imgcard2"

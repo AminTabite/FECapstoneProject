@@ -11,8 +11,8 @@ const HomeRoster = () => {
 
   return (
     <Container fluid className="p-0">
-      <h1 className="text-start titleroster">
-        Seleziona il personaggio e scopri la sua movelist e le sue mosse!
+      <h1 className="text-center - ">
+        Choose your character and check their moves !
       </h1>
       <Row className="justify-content-center m-auto justify-content-start">
         {roster.map((character) => (
@@ -35,8 +35,10 @@ const HomeRoster = () => {
                   src={character.picture}
                 />
               </div>
-              <Card.Body className="p-0 d-flex justify-content-center align-content-center">
-                <p className="text-center">{character.name}</p>
+              <Card.Body className="p-0 d-flex justify-content-center align-content-center text-danger">
+                <strong className="text-center p-1 m-1">
+                  {character.name}
+                </strong>
               </Card.Body>
             </Card>
           </Col>

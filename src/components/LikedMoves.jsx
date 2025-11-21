@@ -67,19 +67,34 @@ const LikedMoves = () => {
           <ListGroup>
             {loading ? (
               <div className="d-flex justify-content-center align-content-center">
-                <Spinner animation="grow" className="text-info text-center" />
-                <Spinner animation="grow" className="text-info text-center" />
-                <Spinner animation="grow" className="text-info text-center" />
-                <Spinner animation="grow" className="text-info text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
               </div>
             ) : (
               likedMove.map((move, id) => (
                 <ListGroup.Item key={id} className="my-2">
                   <div>
-                    <strong> Name :</strong> {move.moveInput}
+                    <strong> Name :</strong> {move.characterName}
                   </div>
                   <div>
-                    <strong>input :</strong> {move.characterName}
+                    <strong>input :</strong> {move.moveInput}
+                  </div>
+                  <div>
+                    <strong>on Hit :</strong> {move.onHit}
+                  </div>
+                  <div>
+                    <strong>on Block :</strong> {move.onBlock}
+                  </div>
+                  <div>
+                    <strong> Recovery :</strong> {move.recovery}
+                  </div>
+                  <div>
+                    <strong> Start up :</strong> {move.startup}
+                  </div>
+                  <div>
+                    <strong>Hit Level :</strong> {move.hitLevel}
                   </div>
                   <div>
                     <Button

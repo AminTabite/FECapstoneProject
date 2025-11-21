@@ -16,7 +16,7 @@ const UpdateForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch(); //per cambiare ruolo , non si fa ma e' per dimostrazione
 
-  const endpoint = `http://localhost:5000/utenti/me`;
+  const endpoint = `http://localhost:5000/utenti/${id}`;
 
   const getOldUser = async () => {
     setLoading(true);

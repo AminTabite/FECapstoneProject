@@ -29,14 +29,23 @@ const MyNavbar = () => {
           <NavDropdown
             title="More"
             id="basic-nav-dropdown "
-            className="bg-dark">
-            <NavDropdown.Item as={Link} to="/register" className="text-light">
+            className="totaldark">
+            <NavDropdown.Item
+              as={Link}
+              to="/register"
+              className="text-light totaldark ">
               Registrati
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/login" className="text-light">
+            <NavDropdown.Item
+              as={Link}
+              to="/login"
+              className="text-light totaldark">
               Login
             </NavDropdown.Item>
-            <NavDropdown.Item as={Link} to="/backoffice" className="text-light">
+            <NavDropdown.Item
+              as={Link}
+              to="/backoffice"
+              className="text-light totaldark">
               Management
             </NavDropdown.Item>
             <NavDropdown.Divider />

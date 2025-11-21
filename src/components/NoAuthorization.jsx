@@ -18,7 +18,7 @@ const NoAuthorization = () => {
             <h5>non hai le autorizzazioni per accedere a questa pagina</h5>
             <Button
               onClick={() => navigate("/")}
-              className="m-2 p-2 rounded-0 text-info bg-danger w-25 mx-auto">
+              className="m-2 p-2 rounded-0 text-light bg-danger w-25 mx-auto">
               Back to HomePage
             </Button>
           </div>

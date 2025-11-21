@@ -66,16 +66,22 @@ const CharactersMovelist = () => {
           <ListGroup>
             {loading ? (
               <div className="d-flex justify-content-center align-content-center">
-                <Spinner animation="grow" className="text-info text-center" />
-                <Spinner animation="grow" className="text-info text-center" />
-                <Spinner animation="grow" className="text-info text-center" />
-                <Spinner animation="grow" className="text-info text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
+                <Spinner animation="grow" className="text-danger text-center" />
               </div>
             ) : (
               moves.map((move, index) => {
                 const favoritePayload = {
                   moveInput: move.command,
                   characterName: params.name,
+                  damage: move.damage,
+                  startup: move.startup,
+                  onBlock: move.block,
+                  onHit: move.hit,
+                  hitLevel: move.hitLevel,
+                  recovery: move.recovery,
                 };
 
                 return (
@@ -93,12 +99,17 @@ const CharactersMovelist = () => {
                     <div>
                       <strong>Block 🛡️ :</strong> {move.block}
                     </div>
+
+                    <div>
+                      <strong>Recovery ❗ :</strong> {move.recovery}
+                    </div>
                     <div>
                       <strong>Hit 💥 :</strong> {move.hit}
                     </div>
                     <div>
                       <strong>Hit Level 💫 :</strong> {move.hitLevel}
                     </div>
+
                     {move.notes && (
                       <pre style={{ whiteSpace: "pre-wrap" }}>{move.notes}</pre>
                     )}
