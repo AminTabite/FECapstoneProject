@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
+import jintatBg from "../assets/jintatoo.png";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -67,7 +68,7 @@ const UserProfile = () => {
         <Col
           xs={12}
           lg={6}
-          className="g1 justify-content-center align-content-center bg-info">
+          className="g1 justify-content-center align-content-center bg-transparent">
           <h1 className="justify-content-start align-center my-2 purple">
             My profile
           </h1>
@@ -83,25 +84,32 @@ const UserProfile = () => {
           ) : !user ? (
             <div>Profilo non trovato</div>
           ) : (
-            <Card>
-              <Card.Body>
-                <Card.Title>{user.username}</Card.Title>
-                <Card.Text>Email: {user.email}</Card.Text>
-                <Card.Text>Ruolo: {user.role}</Card.Text>
-                <Button
-                  variant="primary"
-                  className="g1 d-block mb-2 mx-auto my-2"
-                  onClick={() => navigate(`/edit-user/${user.id}`)}>
-                  Modifica profilo
-                </Button>
-                <Button
-                  variant="secondary"
-                  className="g1 d-block mb-2 mx-auto my-2"
-                  onClick={DeleteMyProfile}>
-                  Delete
-                </Button>
-              </Card.Body>
-            </Card>
+            <div
+              style={{
+                backgroundImage: `url(${jintatBg})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}>
+              <Card className="">
+                <Card.Body>
+                  <Card.Title>{user.username}</Card.Title>
+                  <Card.Text>Email: {user.email}</Card.Text>
+                  <Card.Text>Ruolo: {user.role}</Card.Text>
+                  <Button
+                    variant="dark"
+                    className="g1 d-block mb-2 mx-auto my-2 px-2"
+                    onClick={() => navigate(`/edit-user/${user.id}`)}>
+                    Modifica profilo
+                  </Button>
+                  <Button
+                    variant="danger"
+                    className="g1 d-block mb-2 mx-auto my-2 px-2 text-black"
+                    onClick={DeleteMyProfile}>
+                    Delete
+                  </Button>
+                </Card.Body>
+              </Card>
+            </div>
           )}
         </Col>
       </Row>

@@ -3,13 +3,17 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import logo from "../assets/Senza titolo-2.png";
 
 const MyNavbar = () => {
   return (
     <Navbar expand="lg" className="bg-dark text-light">
       <Container>
         <Navbar.Brand href="#home" className="text-light">
-          👊
+          <img
+            style={{ width: "40px", height: "40px", margin: "10px" }}
+            src={logo}
+          />
         </Navbar.Brand>
 
         <Nav className="me-auto">

@@ -2,6 +2,7 @@ import { Container, Col, Row, Card, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import kazuyaSmile from "../assets/tekken-1-kazuya-smile.webp";
 const Backoffice = () => {
   const [users, setUsers] = useState([]); //array verra' riempito con tutti gli users
   const [loading, setLoading] = useState(true);
@@ -61,28 +62,32 @@ const Backoffice = () => {
     <Container>
       <h1>Utenti registrati nel sito</h1>
       <Row>
-        <Col xs={12} lg={6} className="d-flex justify-content-center">
-          {loading ? (
-            <div className="d-flex justify-content-center align-content-center">
-              <Spinner animation="grow" className="text-info text-center" />
-              <Spinner animation="grow" className="text-info text-center" />
-              <Spinner animation="grow" className="text-info text-center" />
-              <Spinner animation="grow" className="text-info text-center" />
-            </div>
-          ) : (
-            users.map((user, id) => (
-              <Card key={id} className=" my-2 p-2 g-2 flex-grow-1">
+        {loading ? (
+          <div className="d-flex justify-content-center align-content-center">
+            <Spinner animation="grow" className="text-info text-center" />
+            <Spinner animation="grow" className="text-info text-center" />
+            <Spinner animation="grow" className="text-info text-center" />
+            <Spinner animation="grow" className="text-info text-center" />
+          </div>
+        ) : (
+          users.map((user, id) => (
+            <Col
+              xs={12}
+              lg={3}
+              className="d-flex justify-content-center my-3 g-3">
+              <Card key={id} className=" my-2 p-2 g-2 flex-grow-1 text-info">
                 <Card.Img
                   variant="top"
-                  src={"./assets/tekken-1-kazuya-smile.webp"}
+                  className="imgcard2"
+                  src={kazuyaSmile}
                 />
                 <Card.Body>
                   <Card.Title>{user.username}</Card.Title>
                   <Card.Text>{user.email}</Card.Text>
                   <Card.Text>{user.role}</Card.Text>
-                  <div>
+                  <div className="d-flex  justify-content-evenly ">
                     <Button
-                      className="bg-danger m1 p-1"
+                      className="bg-danger m2 p-2 rounded-0"
                       onClick={() => {
                         DeleteUser(user.id);
                       }}>
@@ -92,7 +97,7 @@ const Backoffice = () => {
 
                     <Button
                       key={user.id}
-                      className="m1- p-1 "
+                      className="bg-danger m2 p-2 rounded-0"
                       onClick={() => {
                         navigate(`/edit-user/${user.id}`);
                       }}>
@@ -102,9 +107,9 @@ const Backoffice = () => {
                   </div>
                 </Card.Body>
               </Card>
-            ))
-          )}
-        </Col>
+            </Col>
+          ))
+        )}
       </Row>
     </Container>
   );

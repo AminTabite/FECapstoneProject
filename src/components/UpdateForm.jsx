@@ -88,7 +88,7 @@ const UpdateForm = () => {
         <Col
           xs={12}
           lg={6}
-          className="g1 justify-content-center align-content-center bg-info">
+          className="g1 justify-content-center align-content-center bg-transparent">
           <h1 className="justify-content-start align-center my-2 purple">
             Update User's details
           </h1>
@@ -155,9 +155,9 @@ const UpdateForm = () => {
                 </Form.Group>
 
                 <Button
-                  variant="primary"
+                  variant="dark"
                   type="submit"
-                  className="g1 d-block mb-2 mx-auto my-2">
+                  className="g1 d-block mb-2 mx-auto my-2 rounded-0 text-light black1">
                   Save changes!
                 </Button>
               </Form>
