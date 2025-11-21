@@ -12,35 +12,78 @@ import NotFound from "./components/NotFound.jsx";
 import MyFooter from "./components/MyFooter.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
   const role = useSelector((state) => state.main.role);
 
   return (
-    <>
-      <BrowserRouter>
-        <MyNavbar />
-
+    <BrowserRouter>
+      <MyNavbar />
+      <main>
         <Routes>
+          {/* Queste sono le route sempre accessibili */}
           <Route path="/register" element={<RegistrationLogin />} />
           <Route path="/login" element={<UtenteLogin />} />
-          <Route path="/" element={<HomeRoster />} />
-          <Route path="/character/:name" element={<CharactersMovelist />} />
-          <Route path="/lab" element={<LikedMoves />} />
+
+          {/* route protette: senza il role, ritorna sulla pagina register */}
+          <Route
+            path="/"
+            element={
+              role ? <HomeRoster /> : <Navigate to="/register" replace />
+            }
+          />
+          <Route
+            path="/character/:name"
+            element={
+              role ? (
+                <CharactersMovelist />
+              ) : (
+                <Navigate to="/register" replace />
+              )
+            }
+          />
+          <Route
+            path="/lab"
+            element={
+              role ? <LikedMoves /> : <Navigate to="/register" replace />
+            }
+          />
           <Route
             path="/backoffice"
-            element={role === "ADMIN" ? <Backoffice /> : <NoAuthorization />}
+            element={
+              role ? (
+                role === "ADMIN" ? (
+                  <Backoffice />
+                ) : (
+                  <NoAuthorization />
+                )
+              ) : (
+                <Navigate to="/register" replace />
+              )
+            }
           />
-          <Route path="/edit-user/:id" element={<UpdateForm />} />
-          <Route path="/edit-me/:id" element={<UserProfile />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="/edit-user/:id"
+            element={
+              role ? <UpdateForm /> : <Navigate to="/register" replace />
+            }
+          />
+          <Route
+            path="/edit-me/:id"
+            element={
+              role ? <UserProfile /> : <Navigate to="/register" replace />
+            }
+          />
+          <Route
+            path="*"
+            element={role ? <NotFound /> : <Navigate to="/register" replace />}
+          />
         </Routes>
-
-        <MyFooter />
-      </BrowserRouter>
-    </>
+      </main>
+      <MyFooter />
+    </BrowserRouter>
   );
 }
 

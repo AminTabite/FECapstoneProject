@@ -12,10 +12,10 @@ const MyFooter = () => {
   const getYear = new Date().getFullYear();
 
   return (
-    <footer className="footer">
-      <Container className="p-0- m-0" fluid>
+    <footer className="foote mt-auto mb-auto">
+      <Container className="p-0- mb-5" fluid>
         <Row className="my-2 ms-2">
-          <Col>
+          <Col className="mt-5">
             <h6>
               A special thanks to{" "}
               <a
@@ -50,14 +50,14 @@ const MyFooter = () => {
               </a>
             </div>
             <div className=" text-light my-2 ">
-              <a className=" mx-2" href="mailto:aminepicode13@gmail.com">
+              <a className=" mt-5" href="mailto:aminepicode13@gmail.com">
                 aminepicode13@gmail.com
               </a>
             </div>
           </Col>
         </Row>
 
-        <Row className="mt-2  ms-2">
+        <Row className="mt-2  ms-2 customMargin">
           <Col>Epicode'S Capstone, Year {getYear} </Col>
         </Row>
       </Container>
