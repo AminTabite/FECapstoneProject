@@ -43,9 +43,9 @@ const UtenteLogin = () => {
           <Col
             xs={12}
             lg={6}
-            className="g1 justify-content-center align-content-center bg-info">
+            className="g1 justify-content-center align-content-center bg-transparent">
             <h1 className="justify-content-start align-center my-2 purple">
-              Inserisci i tuoi dati per registrarti al sito !
+              Enter your Email and Password!
             </h1>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -74,9 +74,9 @@ const UtenteLogin = () => {
               </Form.Group>
 
               <Button
-                variant="primary"
+                variant="danger"
                 type="submit"
-                className="g1 d-block mb-2 mx-auto my-2">
+                className="g1 d-block mb-2 mx-auto my-2 rounded-0">
                 Submit
               </Button>
             </Form>

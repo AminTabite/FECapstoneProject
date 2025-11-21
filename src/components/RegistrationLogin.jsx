@@ -2,12 +2,14 @@ import Form from "react-bootstrap/Form";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const RegistrationLogin = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const navigate = useNavigate();
 
   const dispatch = useDispatch(); //funzione che mi porta un cambio di stato dentro il reducer
 
@@ -35,17 +37,18 @@ const RegistrationLogin = () => {
     const payload = { username, email, password, role };
     DoRegistration(payload);
     dispatch({ type: "SET_ROLE", payload: role });
+    navigate("/login");
   };
 
   return (
-    <Container>
-      <Row>
+    <Container fluid className=" d-flex justify-content-center ">
+      <Row className="">
         <Col
           xs={12}
-          lg={6}
-          className="g1 justify-content-center align-content-center bg-dark">
-          <h1 className="justify-content-start align-center my-2 text-info">
-            Inserisci i tuoi dati per registrarti al sito !
+          lg={12}
+          className="g-1 justify-content-center align-content-center bg-transparent mx-auto flex-grow-1 ">
+          <h1 className="justify-content-start align-center my-2 text-danger">
+            A new fighter craves Knowledge!
           </h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicUsername">
@@ -99,9 +102,9 @@ const RegistrationLogin = () => {
             </Form.Group>
 
             <Button
-              variant="primary"
+              variant="danger"
               type="submit"
-              className="g1 d-block mb-2 mx-auto my2">
+              className="g1 d-block mb-2 mx-auto my2 rounded-0">
               Submit
             </Button>
           </Form>
