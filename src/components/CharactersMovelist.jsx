@@ -107,9 +107,9 @@ const CharactersMovelist = () => {
                       onClick={() => {
                         PostFavoriteMove(token, favoritePayload);
                       }}>
-                      <Button className="p2 m2 bg bg-info">
+                      <Button className="p2 m2 bg bg-danger rounded-0">
                         {" "}
-                        aggiungi ai preferiti
+                        Add To List
                       </Button>
                     </div>
                   </ListGroup.Item>

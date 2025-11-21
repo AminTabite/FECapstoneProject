@@ -35,7 +35,7 @@ const HomeRoster = () => {
                   src={character.picture}
                 />
               </div>
-              <Card.Body className="p-0">
+              <Card.Body className="p-0 d-flex justify-content-center align-content-center">
                 <p className="text-center">{character.name}</p>
               </Card.Body>
             </Card>

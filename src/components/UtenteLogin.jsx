@@ -1,10 +1,12 @@
 import Form from "react-bootstrap/Form";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const UtenteLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const endpoint = "http://localhost:5000/auth/login";
 
@@ -31,6 +33,7 @@ const UtenteLogin = () => {
     e.preventDefault();
     const payload = { email, password };
     Login(payload);
+    navigate("/");
   };
 
   return (

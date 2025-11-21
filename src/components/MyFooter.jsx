@@ -9,10 +9,12 @@ import {
 } from "react-icons/bs";
 
 const MyFooter = () => {
+  const getYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <Container className="p-0- m-0" fluid>
-        <Row>
+        <Row className="my-2 ms-2">
           <Col>
             <h6>
               A special thanks to{" "}
@@ -27,32 +29,36 @@ const MyFooter = () => {
           </Col>
         </Row>
 
-        <Row>
-          <h3>Contacts</h3>
-          <Col className="d-flex justify-content-evenly">
-            <div className="mx-4 px-4 text-light text-center ">
-              <a href="https://github.com/AminTabite" target="_blank">
+        <Row className="my-2  ms-2">
+          <h6 className="">Contacts :</h6>
+          <Col className="d-flex justify-content-start g-2 align-content-center flex-column">
+            <div className=" text-light my-2 ">
+              <a
+                className=" mx-2"
+                href="https://github.com/AminTabite"
+                target="_blank">
                 <BsGithub />
               </a>
             </div>
 
-            <div>
+            <div className=" text-light my-2 ">
               <a
+                className=" mx-2"
                 href="www.linkedin.com/in/amin-tabite-9889b7217"
                 target="_blank">
                 <BsLinkedin />
               </a>
             </div>
-            <div>
-              <a href="mailto:aminepicode13@gmail.com">
+            <div className=" text-light my-2 ">
+              <a className=" mx-2" href="mailto:aminepicode13@gmail.com">
                 aminepicode13@gmail.com
               </a>
             </div>
           </Col>
         </Row>
 
-        <Row>
-          <Col>@ {new Date().getFullYear} EPICODE</Col>
+        <Row className="mt-2  ms-2">
+          <Col>Epicode'S Capstone, Year {getYear} </Col>
         </Row>
       </Container>
     </footer>
