@@ -82,7 +82,7 @@ const UserProfile = () => {
           xs={12}
           lg={6}
           className="g1 justify-content-center align-content-center bg-transparent">
-          <h1 className="justify-content-start align-center my-2 purple">
+          <h1 className="justify-content-start align-center my-5 purple">
             My profile
           </h1>
           {loading ? (
@@ -125,14 +125,12 @@ const UserProfile = () => {
             </div>
           )}
         </Col>
-        <Col className="d-flex justify-content-center">
+        <Col xs={12} lg={6} className="d-flex justify-content-center my-2">
           {" "}
-          <div className="d-flex justify-content-center align-content-center ">
+          <div className="d-flex justify-content-center align-content-center align-items-center my-4">
             <Button
-              className=" bg-light text-dark "
-              onClick={logout}
-              xs={12}
-              lg={6}>
+              className=" bg-light text-info bg-transparent border-info"
+              onClick={logout}>
               {" "}
               Log out{" "}
             </Button>
