@@ -13,10 +13,19 @@ import MyFooter from "./components/MyFooter.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 
 function App() {
   const role = useSelector((state) => state.main.role);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const savedRole = localStorage.getItem("role");
+    if (savedRole) {
+      dispatch({ type: "SET_ROLE", payload: savedRole });
+    }
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
@@ -76,10 +85,7 @@ function App() {
               role ? <UserProfile /> : <Navigate to="/register" replace />
             }
           />
-          <Route
-            path="*"
-            element={role ? <NotFound /> : <Navigate to="/register" replace />}
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <MyFooter />

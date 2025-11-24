@@ -2,14 +2,20 @@ import Form from "react-bootstrap/Form";
 import { Container, Col, Row, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const UtenteLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errors, setErrors] = useState("");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const endpoint = "http://localhost:5000/auth/login";
+  const rolecontrol2 = useSelector((state) => state.main.role);
+
+  if (rolecontrol2) return <Navigate to="/" />;
 
   const Login = async (payload) => {
     try {
@@ -19,36 +25,45 @@ const UtenteLogin = () => {
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 400) {
+          const errorData = await response.json();
+          setErrors(errorData.messages);
+        } else if (response.status === 401) {
+          setErrors({ form: "Email or Password are incorrect" });
+        } else {
+          setErrors({ form: "unknown Error" });
+        }
+        return;
       }
       const data = await response.json();
+      console.log("DATI LOGIN", data);
       localStorage.setItem("token", data.token);
       console.log("Token salvato:", data.token);
-      console.log(data);
+      localStorage.setItem("role", data.role);
+      dispatch({ type: "SET_ROLE", payload: data.role });
 
+      console.log(data);
       navigate("/");
     } catch (error) {
-      console.error("Errore nella fetch:", error);
-      setErrorMsg("Error your credentials might be wrong");
+      setErrors({
+        form: "Credentials not found on our database! Try again.",
+        error,
+      });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { email, password };
-
     Login(payload);
   };
 
   useEffect(() => {
-    setErrorMsg("");
+    setErrors({});
   }, [email, password]);
 
   return (
     <>
-      {errorMsg && (
-        <div className="alert alert-danger text-center my-2">{errorMsg}</div>
-      )}{" "}
       <Container>
         <Row className="d-flex justify-content-center my-5">
           <Col
@@ -69,7 +84,9 @@ const UtenteLogin = () => {
                     setEmail(e.target.value);
                   }}
                 />
-                <Form.Text className="text-muted"></Form.Text>
+                {errors.email && (
+                  <div className="text-danger">{errors.email}</div>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -82,6 +99,9 @@ const UtenteLogin = () => {
                     setPassword(e.target.value);
                   }}
                 />
+                {errors.password && (
+                  <div className="text-danger">{errors.password}</div>
+                )}
               </Form.Group>
 
               <Button
@@ -90,6 +110,9 @@ const UtenteLogin = () => {
                 className="g1 d-block mb-2 mx-auto my-2 rounded-0">
                 Submit
               </Button>
+              {errors.form && (
+                <div className="alert alert-danger">{errors.form}</div>
+              )}
             </Form>
           </Col>
         </Row>

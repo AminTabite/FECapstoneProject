@@ -32,7 +32,7 @@ const UpdateForm = () => {
 
       setUsername(data.username);
       setEmail(data.email);
-      setPassword(data.password);
+
       setRole(data.role);
       setLoading(false);
       console.log(data);
@@ -134,7 +134,7 @@ const UpdateForm = () => {
                   <Form.Control
                     type="password"
                     placeholder="Password"
-                    value=""
+                    value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />
                 </Form.Group>

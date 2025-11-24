@@ -3,17 +3,23 @@ import { Container, Col, Row, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 
 const RegistrationLogin = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [errors, setErrors] = useState({});
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
 
-  const dispatch = useDispatch(); //funzione che mi porta un cambio di stato dentro il reducer
+  const dispatch = useDispatch();
+  //funzione che mi porta un cambio di stato dentro il reducer
+
+  const rolecontrol = useSelector((state) => state.main.role);
+  if (rolecontrol) return <Navigate to="/" />;
 
   const endpoint = "http://localhost:5000/auth/register";
 
@@ -24,35 +30,39 @@ const RegistrationLogin = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (response.status === 400) {
+          const errorData = await response.json();
+          setErrors(errorData.messages);
+          {
+            /* errors payload nel backend */
+          }
+        } else {
+          setErrors({ form: "cant sign, unknown error" });
+        }
+        return;
       }
       const data = await response.json();
       console.log(data);
+      setSuccessMsg("Registration successful");
+      navigate("/login");
     } catch (error) {
-      console.log("Errore nella fetch:", error);
-      setErrorMsg("Error your credentials might be wrong");
+      setErrors({ form: "error, try again", error });
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const payload = { username, email, password, role };
-    DoRegistration(payload);
-    dispatch({ type: "SET_ROLE", payload: role });
-    setSuccessMsg("Updated successfully");
-    navigate("/login");
+
+    DoRegistration({ username, email, password, role });
   };
 
   useEffect(() => {
-    setErrorMsg("");
+    setErrors({});
   }, [email, password, username, role]);
   return (
     <>
-      {errorMsg && (
-        <div className="alert alert-danger text-center my-2">{errorMsg}</div>
-      )}{" "}
-      :{" "}
       {successMsg && (
         <div className="alert alter-success text-center my-2">{successMsg}</div>
       )}
@@ -77,6 +87,9 @@ const RegistrationLogin = () => {
                   }}
                 />
                 <Form.Text className="text-muted"></Form.Text>
+                {errors.username && (
+                  <div className="text-danger">{errors.username}</div>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -90,6 +103,9 @@ const RegistrationLogin = () => {
                   }}
                 />
                 <Form.Text className="text-muted"></Form.Text>
+                {errors.email && (
+                  <div className="text-danger">{errors.email}</div>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -102,6 +118,9 @@ const RegistrationLogin = () => {
                     setPassword(e.target.value);
                   }}
                 />
+                {errors.password && (
+                  <div className="text-danger">{errors.password}</div>
+                )}
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="formBasicRole">

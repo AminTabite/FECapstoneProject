@@ -93,7 +93,7 @@ main {
 .navbar-nav .dropdown-item:focus,
 .navbar-nav .dropdown-item:hover {
   color: #e53935 !important;
-  background: #151515 !important;
+  background: #000000 !important;
 }
 
 /* Navbar toggler (hamburger) rosso */

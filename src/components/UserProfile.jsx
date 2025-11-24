@@ -3,6 +3,7 @@ import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
 import jintatBg from "../assets/jintatoo.png";
+import { useDispatch } from "react-redux";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
@@ -10,6 +11,7 @@ const UserProfile = () => {
   const [error, setError] = useState(""); // Gestisce eventuali errori
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const endpoint = "http://localhost:5000/utenti/me";
 
@@ -50,12 +52,23 @@ const UserProfile = () => {
           `Errore nella cancellazione profilo, status: ${response.status} `
         );
       }
+
       localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      dispatch({ type: "SET_ROLE", payload: "" });
       navigate("/register");
+
       console.log("profilo eliminato correttamente");
     } catch (error) {
       console.log("Errore nella delete", error);
     }
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    dispatch({ type: "SET_ROLE", payload: "" });
+    navigate("/login");
   };
 
   useEffect(() => {
@@ -64,7 +77,7 @@ const UserProfile = () => {
 
   return (
     <Container>
-      <Row className="d-flex justify-content-center my-5">
+      <Row className="d-flex justify-content-center my-5 flex-xs-column flex-lg-row">
         <Col
           xs={12}
           lg={6}
@@ -111,6 +124,19 @@ const UserProfile = () => {
               </Card>
             </div>
           )}
+        </Col>
+        <Col className="d-flex justify-content-center">
+          {" "}
+          <div className="d-flex justify-content-center align-content-center ">
+            <Button
+              className=" bg-light text-dark "
+              onClick={logout}
+              xs={12}
+              lg={6}>
+              {" "}
+              Log out{" "}
+            </Button>
+          </div>
         </Col>
       </Row>
     </Container>
