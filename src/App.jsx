@@ -10,6 +10,7 @@ import UserProfile from "./components/UserProfile.jsx";
 import NoAuthorization from "./components/NoAuthorization.jsx";
 import NotFound from "./components/NotFound.jsx";
 import MyFooter from "./components/MyFooter.jsx";
+import UpdateMe from "./components/UpdateMe.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -85,6 +86,12 @@ function App() {
               role ? <UserProfile /> : <Navigate to="/register" replace />
             }
           />
+
+          <Route
+            path="/edit-me"
+            element={role ? <UpdateMe /> : <Navigate to="/register" replace />}
+          />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

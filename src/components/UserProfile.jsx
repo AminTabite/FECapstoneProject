@@ -111,7 +111,7 @@ const UserProfile = () => {
                   <Button
                     variant="dark"
                     className="g1 d-block mb-2 mx-auto my-2 px-2"
-                    onClick={() => navigate(`/edit-user/${user.id}`)}>
+                    onClick={() => navigate(`/edit-me`)}>
                     Modifica profilo
                   </Button>
                   <Button
