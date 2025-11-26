@@ -4,13 +4,14 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Alert from "react-bootstrap/Alert";
 
 const CharactersMovelist = () => {
   const [moves, setMoves] = useState([]); // Inizializza come array
   const [loading, setLoading] = useState(true);
   const params = useParams();
   const token = localStorage.getItem("token"); //mi serve il token per inserire mosse nei preferiti
-
+  const [duplicateMoveIndex, setDuplicateMoveIndex] = useState(null); //mosse gia' nella lista preferiti
   const [currentPage, setCurrentPage] = useState(1); //per la paginazione
   const movesPerPage = 15;
   const indexOfLastMove = currentPage * movesPerPage;
@@ -40,7 +41,7 @@ const CharactersMovelist = () => {
   };
 
   // POST delle mosse preferite
-  const PostFavoriteMove = async (token, payload) => {
+  const PostFavoriteMove = async (token, payload, moveIndex) => {
     try {
       const response = await fetch(endpoint1, {
         method: "POST",
@@ -51,9 +52,13 @@ const CharactersMovelist = () => {
         body: JSON.stringify(payload),
       });
       if (!response.ok) {
+        if (response.status === 400) {
+          setDuplicateMoveIndex(moveIndex);
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
+      setDuplicateMoveIndex(null);
       console.log(data);
     } catch (error) {
       console.log("errore nell' aggiunta mosse", error);
@@ -136,12 +141,17 @@ const CharactersMovelist = () => {
                       <div
                         className="justify content center align-content-center"
                         onClick={() => {
-                          PostFavoriteMove(token, favoritePayload);
+                          PostFavoriteMove(token, favoritePayload, index);
                         }}>
                         <Button className="p2 m2 bg bg-danger rounded-0">
                           Add To List
                         </Button>
                       </div>
+                      {duplicateMoveIndex === index && (
+                        <div className="alert alert-danger mt-2 text-center">
+                          Move already present!
+                        </div>
+                      )}
                     </ListGroup.Item>
                   );
                 })
@@ -152,7 +162,7 @@ const CharactersMovelist = () => {
             {!loading && (
               <Row className="mt-3">
                 <Col className="d-flex justify-content-center ">
-                  <ButtonGroup aria-label="Pagination">
+                  <ButtonGroup aria-label="Pagination" className="mb-2">
                     <Button
                       variant="light text-dark rounded-0"
                       onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
@@ -160,7 +170,7 @@ const CharactersMovelist = () => {
                       Previous
                     </Button>
                     <span className="mx-3 align-self-center">
-                      Pagina {currentPage} di {totalPages}
+                      Page {currentPage} of {totalPages}
                     </span>
                     <Button
                       variant="light text-dark rounded-0"

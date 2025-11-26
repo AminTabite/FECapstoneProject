@@ -71,8 +71,6 @@ const UpdateForm = () => {
         console.log(data);
         setSuccessMsg("Updated successfully!");
 
-        dispatch({ type: "SET_ROLE", payload: role });
-
         setTimeout(() => navigate("/"), 1500);
       } catch (error) {
         console.log("errore nel aggiornamento del profilo selezionato", error);
