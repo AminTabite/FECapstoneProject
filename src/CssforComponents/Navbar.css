@@ -1,0 +1,66 @@
+/* Navbar completamente nera */
+.navbar.bg-dark {
+  background: #000 !important;
+}
+
+/* Testo e icone rosse nella navbar */
+.navbar .nav-link,
+.navbar .navbar-brand,
+.navbar .navbar-toggler-icon,
+.navbar .nav-link svg {
+  color: #e53935 !important;
+  fill: #e53935 !important; /*prossimamente per le icone*/
+  font-weight: bold;
+}
+
+/* Cambia colore anche quando nav-link è attiva o hover */
+.navbar .nav-link.active,
+.navbar .nav-link:focus,
+.navbar .nav-link:hover {
+  color: #ff1744 !important;
+  text-decoration: underline;
+}
+
+/* Navbar brand stile rosso anche da mobile */
+.navbar-brand {
+  color: #e53935 !important;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+
+/* Dropdown menu (su mobile) sfondo nero e testo rosso */
+.navbar-nav .dropdown-menu {
+  background: #000 !important;
+  border: none;
+}
+
+.navbar-nav .dropdown-item,
+.navbar-nav .dropdown-item:focus,
+.navbar-nav .dropdown-item:hover {
+  color: #e53935 !important;
+  background: #151515 !important;
+}
+
+/* Navbar toggler (hamburger) rosso */
+.navbar-toggler {
+  border-color: #e53935 !important;
+}
+
+.dropdown-menu {
+  background: #000 !important;
+  border: none;
+}
+
+.dropdown-item,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: #e53935 !important;
+  background: #151515 !important;
+}
+
+.dropdown-item.active,
+.dropdown-item.active:focus,
+.dropdown-item.active:hover {
+  color: #ff0101 !important; /* testo bianco su attivo */
+  background: #e53935 !important; /* rosso di sfondo su attivo */
+}

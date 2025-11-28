@@ -1,3 +1,25 @@
-node_modules/@esbuild/win32-x64/esbuild.exe
-node_modules/@rollup/rollup-win32-x64-msvc/rollup.win32-x64-msvc.node
-node_modules/@swc/core-win32-x64-msvc/swc.win32-x64-msvc.node
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.env
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
