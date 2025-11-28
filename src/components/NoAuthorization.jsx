@@ -8,14 +8,17 @@ const NoAuthorization = () => {
   return (
     <Container fluid className="p-0">
       <Row>
-        <Col className="d-flex justify-content-center" xs={12}>
+        <Col
+          className="d-flex justify-content-center flex-grow-1"
+          xs={12}
+          lg={8}>
           <div className="d-flex flex-column align-items-center justify-content-center my-5">
             <img
               src={Mygif}
               alt="gif no autorizzazione"
               style={{ maxWidth: "100%" }}
             />
-            <h5>non hai le autorizzazioni per accedere a questa pagina</h5>
+            <h5 className="my-3">You need ADMIN role to see this page!</h5>
             <Button
               onClick={() => navigate("/")}
               className="m-2 p-2 rounded-0 text-light bg-danger w-25 mx-auto">

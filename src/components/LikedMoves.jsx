@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Spinner from "react-bootstrap/Spinner";
-
+import { BsTrash } from "react-icons/bs";
 const LikedMoves = () => {
   const [likedMove, setLikedMove] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,7 +78,7 @@ const LikedMoves = () => {
               </div>
             ) : (
               likedMove.map((move, id) => (
-                <ListGroup.Item key={id} className="my-2">
+                <ListGroup.Item key={id} className="my-2 bg-body-secondary">
                   <div>
                     <strong> Name :</strong> {move.characterName}
                   </div>
@@ -100,13 +100,13 @@ const LikedMoves = () => {
                   <div>
                     <strong>Hit Level :</strong> {move.hitLevel}
                   </div>
-                  <div>
+                  <div className="d-flex justify-content-center align-items-center">
                     <Button
-                      className="p1 m1 rounded-3 bg-black"
+                      className="p1 m1  bg-transparent border-danger"
                       onClick={() => {
                         DeleteFavoriteMove(move.id, token);
                       }}>
-                      ✖️
+                      <BsTrash className="text-danger" />
                     </Button>
                   </div>
                   {move.notes && (

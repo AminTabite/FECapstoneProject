@@ -11,6 +11,7 @@ import NoAuthorization from "./components/NoAuthorization.jsx";
 import NotFound from "./components/NotFound.jsx";
 import MyFooter from "./components/MyFooter.jsx";
 import UpdateMe from "./components/UpdateMe.jsx";
+import Guide from "./components/Guide.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -90,6 +91,11 @@ function App() {
           <Route
             path="/edit-me"
             element={role ? <UpdateMe /> : <Navigate to="/register" replace />}
+          />
+
+          <Route
+            path="/guide"
+            element={role ? <Guide /> : <Navigate to="/register" replace />}
           />
 
           <Route path="*" element={<NotFound />} />

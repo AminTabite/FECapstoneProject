@@ -26,6 +26,9 @@ const MyNavbar = () => {
           <Link to={"/edit-me/:id"} className="nav-link text-light">
             My profile
           </Link>
+          <Link to={"/guide"} className="nav-link text-light">
+            Guide
+          </Link>
           <NavDropdown
             title="More"
             id="basic-nav-dropdown "
@@ -34,7 +37,7 @@ const MyNavbar = () => {
               as={Link}
               to="/register"
               className="text-light totaldark ">
-              Registrati
+              Register
             </NavDropdown.Item>
             <NavDropdown.Item
               as={Link}

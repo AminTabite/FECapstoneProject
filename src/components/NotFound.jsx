@@ -8,7 +8,10 @@ const NotFound = () => {
   return (
     <Container>
       <Row>
-        <Col className="d-flex justify-content-center" xs={12}>
+        <Col
+          className="d-flex justify-content-center flex-grow-1"
+          xs={12}
+          lg={8}>
           <div className="d-flex flex-column align-items-center justify-content-center my-5">
             <img
               src={Mygif}
