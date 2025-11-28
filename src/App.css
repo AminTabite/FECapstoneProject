@@ -1,0 +1,137 @@
+@import url("https://fonts.googleapis.com/css2?family=Alike+Angular&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Alike Angular", Arial, sans-serif !important; /* font sito*/
+
+  color: rgb(255, 255, 255) !important;
+}
+
+body {
+  background-image: url("./assets/bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar .nav-link {
+  color: rgb(255, 0, 0) !important;
+}
+
+.a {
+  text-decoration: none;
+  color: rgb(255, 0, 0);
+}
+
+.footer * {
+  color: rgb(255, 0, 0);
+  background-color: rgb(0, 0, 0);
+}
+
+.customMargin {
+  margin-bottom: 100px;
+}
+/* */
+
+.navbar.bg-dark {
+  background: #000 !important;
+}
+
+/* serve per il testo e icone rosse nella navbar */
+.navbar .nav-link,
+.navbar .navbar-brand,
+.navbar .navbar-toggler-icon,
+.navbar .nav-link svg {
+  color: #e53935 !important;
+  fill: #e53935 !important; /*prossimamente per le icone*/
+  font-weight: bold;
+  background-color: #000;
+}
+
+.totaldark {
+  background-color: #000 !important;
+}
+
+/*Serve per cambia colore anche quando nav-link è attiva o hover */
+.navbar .nav-link.active,
+.navbar .nav-link:focus,
+.navbar .nav-link:hover {
+  color: #ff1744 !important;
+  text-decoration: underline;
+}
+
+/* Questo e' per Navbar brand stile rosso anche da mobile */
+.navbar-brand {
+  color: #e53935 !important;
+  letter-spacing: 2px;
+  font-weight: bolder;
+}
+
+/* Dropdown menu (su mobile) sfondo nero e testo rosso */
+.navbar-nav .dropdown-menu {
+  background: #000 !important;
+  border: none;
+}
+
+.navbar-nav .dropdown-item,
+.navbar-nav .dropdown-item:focus,
+.navbar-nav .dropdown-item:hover {
+  color: #e53935 !important;
+  background: #000000 !important;
+}
+
+/* Navbar toggler (hamburger) rosso */
+.navbar-toggler {
+  border-color: #e53935 !important;
+}
+
+.dropdown-menu {
+  background: #000 !important;
+  border: none;
+}
+
+.dropdown-item,
+.dropdown-item:focus,
+.dropdown-item:hover {
+  color: #e53935 !important;
+  background: #151515 !important;
+}
+
+.dropdown-item.active,
+.dropdown-item.active:focus,
+.dropdown-item.active:hover {
+  color: #ff0101 !important; /* testo bianco su attivo */
+  background: #e53935 !important; /* rosso di sfondo su attivo */
+}
+
+.favorites_cards {
+  background-image: url("./assets/cardbg.png") !important;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover !important;
+  width: 100% !important;
+  max-width: 300px !important;
+  height: 500px !important;
+}
+
+.container,
+.row,
+.col {
+  background: transparent !important;
+}
