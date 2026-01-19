@@ -37,6 +37,7 @@ import victorpng from "../assets/victorpng.webp";
 import xiaoyupng from "../assets/xiaoyupng.webp";
 import yoshimitsupng from "../assets/yoshimitsupng.webp";
 import zafinapng from "../assets/zafinapng.webp";
+import miarypng from "../assets/miary-zo.webp";
 
 const RosterArray = [
   {
@@ -154,6 +155,12 @@ const RosterArray = [
     name: "Lili",
     picture: lilipng,
   },
+
+  {
+    name: "miary-zo",
+    picture: miarypng,
+  },
+
   {
     name: "Nina",
     picture: ninapng,
