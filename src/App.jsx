@@ -12,6 +12,7 @@ import NotFound from "./components/NotFound.jsx";
 import MyFooter from "./components/MyFooter.jsx";
 import UpdateMe from "./components/UpdateMe.jsx";
 import Guide from "./components/Guide.jsx";
+import MoveSearchbar from "./components/MoveSearchbar.jsx";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -99,6 +100,13 @@ function App() {
           />
 
           <Route path="*" element={<NotFound />} />
+
+          <Route
+            path="/searchingMove"
+            element={
+              role ? <MoveSearchbar /> : <Navigate to="/register" replace />
+            }
+          />
         </Routes>
       </main>
       <MyFooter />
