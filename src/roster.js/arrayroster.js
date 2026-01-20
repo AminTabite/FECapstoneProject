@@ -157,7 +157,7 @@ const RosterArray = [
   },
 
   {
-    name: "miary-zo",
+    name: "Miary-Zo",
     picture: miarypng,
   },
 

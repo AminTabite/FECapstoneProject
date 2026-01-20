@@ -10,7 +10,7 @@ const RegistrationLogin = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("USER");
   const [errors, setErrors] = useState({});
   const [successMsg, setSuccessMsg] = useState("");
   const navigate = useNavigate();
@@ -127,8 +127,12 @@ const RegistrationLogin = () => {
                 <Form.Label>Role</Form.Label>
                 <Form.Select
                   value={role}
-                  onChange={(e) => setRole(e.target.value)}>
-                  <option value="">Seleziona ruolo...</option>
+                  onChange={(e) => setRole(e.target.value)}
+                  readOnly
+                  disabled>
+                  <option value="USER">
+                    You'll start as USER, contact the admin for more
+                  </option>
                   <option value="USER">USER</option>
                   <option value="ADMIN">ADMIN</option>
                 </Form.Select>

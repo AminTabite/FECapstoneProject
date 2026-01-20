@@ -145,7 +145,9 @@ const UpdateMe = () => {
                     onChange={(e) => {
                       console.log("Ruolo selezionato:", e.target.value);
                       setRole(e.target.value);
-                    }}>
+                    }}
+                    readOnly
+                    disabled>
                     <option value="">Seleziona ruolo...</option>
                     <option value="USER">USER</option>
                     <option value="ADMIN">ADMIN</option>

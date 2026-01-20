@@ -43,7 +43,7 @@ const MyFooter = () => {
           <div className=" text-light my-2 ">
             <a
               className=" mx-2 text-danger text-decoration-none"
-              href="www.linkedin.com/in/amin-tabite-9889b7217"
+              href="https://www.linkedin.com/in/amin-tabite/"
               target="_blank">
               <BsLinkedin />
             </a>

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Guide = () => {
   const navigate = useNavigate();
   return (
-    <Container>
+    <Container fluid className="px-3">
       <Row>
         <h2 className="my-3 text-center">
           Here's a quick guide to Tekken's inputs!
@@ -13,7 +13,7 @@ const Guide = () => {
           className="d-flex justify-content-center flex-grow-1"
           xs={12}
           lg={8}>
-          <div className="d-flex flex-column align-items-center justify-content-center my-5">
+          <div className="d-flex flex-column align-items-center g-4 my-4">
             <div className="my-3 bg-body-tertiary">
               {" "}
               <img

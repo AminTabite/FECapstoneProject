@@ -110,12 +110,13 @@ const MoveSearchbar = () => {
 
   return (
     <Container>
-      <Row className="d-flex justify-content-center mt-3">
-        <Col xs={5} lg={5}>
+      <Row className="d-flex justify-content-center mt-3 align-items-end">
+        <Col xs={5} lg={5} className="pe-2">
           <Form.Select
             aria-label="Select character"
             value={characterName}
-            onChange={(e) => setCharacter(e.target.value)}>
+            onChange={(e) => setCharacter(e.target.value)}
+            className="h-100">
             <option value="">Select a character</option>
             {RosterArray.map((char) => (
               <option key={char.name} value={char.name}>
@@ -125,30 +126,33 @@ const MoveSearchbar = () => {
           </Form.Select>
         </Col>
 
-        <Col xs={5} lg={5} className=" m-1">
+        <Col xs={5} lg={5} className="">
           <Form.Control
             type="text"
             placeholder="(es: f,f+2 or d/f+1)."
             value={moveInput}
             onChange={(e) => setMoveinput(e.target.value)}
+            className="h-100"
           />
         </Col>
       </Row>
       <Row className="d-flex justify-content-center">
-        <Button
-          className="dan bg-light text-danger px-3 py-1"
-          onClick={GetSpecificMove}
-          disabled={loading}
-          size="sm">
-          {loading ? (
-            <>
-              <Spinner size="sm" className="me-1" />
-              <span className="d-none d-md-inline">loading...</span>
-            </>
-          ) : (
-            <FaSearch size={16} />
-          )}
-        </Button>
+        <div className="d-flex justify-content-center ">
+          <Button
+            className="dan bg-light text-primary px-3 py-1 my-4"
+            onClick={GetSpecificMove}
+            disabled={loading}
+            size="m">
+            {loading ? (
+              <>
+                <Spinner size="sm" className="me-1" />
+                <span className="d-none d-md-inline">loading...</span>
+              </>
+            ) : (
+              <FaSearch size={16} />
+            )}
+          </Button>
+        </div>
         {/*se e' un errore*/}
         {error && (
           <Alert variant="danger" className="mt-3 text-center">
