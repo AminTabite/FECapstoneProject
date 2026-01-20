@@ -1,15 +1,32 @@
 import { useState } from "react";
-import { Container, Col, Row, Button } from "react-bootstrap";
+import { Container, Col, Row, Button, Alert, Spinner } from "react-bootstrap";
 import RosterArray from "../roster.js/arrayroster";
 import Form from "react-bootstrap/Form";
+import { FaSearch } from "react-icons/fa";
 
 const MoveSearchbar = () => {
+  const token = localStorage.getItem("token");
   const [characterName, setCharacter] = useState("");
   const [moveInput, setMoveinput] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [duplicateMoveIndex, setDuplicateMoveIndex] = useState(null);
   const endpoint = `http://localhost:5000/proxy/tekken/${characterName}`;
+  const endpoint1 = "http://localhost:5000/favorites";
+
+  const normalizeCommand = (cmd) => {
+    if (!cmd) return "";
+    let normalized = cmd.trim().toLowerCase();
+
+    // Rimuove spazi, virgole, slash, :
+    normalized = normalized.replace(/[\s,/:]+/g, "");
+
+    // Comprime SOLO direzioni+numero pensato per mosse come 1+2/ 3+4 etc
+    normalized = normalized.replace(/([fdbu]+(?:f|b)?)\+([1234])/g, "$1$2");
+
+    return normalized;
+  };
 
   const GetSpecificMove = async () => {
     setError("");
@@ -23,6 +40,7 @@ const MoveSearchbar = () => {
     }
 
     try {
+      const endpoint = `http://localhost:5000/proxy/tekken/${characterName}`;
       const response = await fetch(endpoint);
       if (!response.ok) {
         throw new Error(`Error, status: ${response.status}`);
@@ -30,10 +48,10 @@ const MoveSearchbar = () => {
       const data = await response.json();
       const frames = data.framesNormal || [];
 
-      //filtraggio per input scelto dal utente
-      const userquery = moveInput.trim().toLowerCase();
-      constfound = frames.find(
-        (move) => move.command?.trim().toLowerCase() === userquery
+      // ← QUI usi la funzione normalizzata
+      const userquery = normalizeCommand(moveInput);
+      const found = frames.find(
+        (move) => normalizeCommand(move.command) === userquery,
       );
 
       if (found) {
@@ -48,7 +66,6 @@ const MoveSearchbar = () => {
       setLoading(false);
     }
   };
-
   const addToFavorites = () => {
     if (!result || !token) return;
 
@@ -93,13 +110,12 @@ const MoveSearchbar = () => {
 
   return (
     <Container>
-      <Row className="d-flex justify-content-center">
+      <Row className="d-flex justify-content-center mt-3">
         <Col xs={5} lg={5}>
           <Form.Select
             aria-label="Select character"
             value={characterName}
             onChange={(e) => setCharacter(e.target.value)}>
-            <option>Open this select menu</option>
             <option value="">Select a character</option>
             {RosterArray.map((char) => (
               <option key={char.name} value={char.name}>
@@ -110,46 +126,72 @@ const MoveSearchbar = () => {
         </Col>
 
         <Col xs={5} lg={5} className=" m-1">
-          <Form.Control type="text" placeholder="(es: f,f+2 or d/f+1)." />
+          <Form.Control
+            type="text"
+            placeholder="(es: f,f+2 or d/f+1)."
+            value={moveInput}
+            onChange={(e) => setMoveinput(e.target.value)}
+          />
         </Col>
       </Row>
       <Row className="d-flex justify-content-center">
         <Button
-          className="dan bg-light text-danger"
+          className="dan bg-light text-danger px-3 py-1"
           onClick={GetSpecificMove}
-          disabled={loading}>
+          disabled={loading}
+          size="sm">
           {loading ? (
             <>
-              <Spinner size="sm" className="me-2" />
-              Cercando...
+              <Spinner size="sm" className="me-1" />
+              <span className="d-none d-md-inline">loading...</span>
             </>
           ) : (
-            "Find the move!"
+            <FaSearch size={16} />
           )}
         </Button>
-        //se e' un errore
+        {/*se e' un errore*/}
         {error && (
           <Alert variant="danger" className="mt-3 text-center">
             {error}
           </Alert>
         )}
-        //se e' corretto
+        {/*se e' corretto*/}
         {result && (
-          <div className="mt-4 p-3 border rounded">
-            <h5>Mossa trovata!</h5>
+          <div className="mt-4 p-3 border rounded bg-light text-black m-1 d-flex flex-column justify-content-between mb-3">
             <div>
-              <strong>Command:</strong> {result.command}
+              <strong>Command ➡️ :</strong> {result.command}
             </div>
             <div>
-              <strong>Damage:</strong> {result.damage}
+              <strong>Damage ⚡ :</strong> {result.damage}
             </div>
             <div>
-              <strong>Startup:</strong> {result.startup}
+              <strong>Startup 🕙 :</strong> {result.startup}
             </div>
-            {/* Altri campi... */}
-            <Button variant="success" className="mt-2" onClick={addToFavorites}>
-              Add to Favorites
-            </Button>
+            <div>
+              <strong>Block 🛡️ :</strong> {result.block}
+            </div>
+            <div>
+              <strong>Recovery ❗ :</strong> {result.recovery}
+            </div>
+            <div>
+              <strong>Hit 💥 :</strong> {result.hit}
+            </div>
+            <div>
+              <strong>Hit Level 💫 :</strong> {result.hitLevel}
+            </div>
+
+            <div
+              className="justify content center align-content-center"
+              onClick={addToFavorites}>
+              <Button className="p2 m2 bg bg-danger rounded-0">
+                Add To List
+              </Button>
+            </div>
+            {characterName && moveInput === characterName && moveInput && (
+              <div className="alert alert-danger mt-2 text-center">
+                Move already present!
+              </div>
+            )}
           </div>
         )}
       </Row>
