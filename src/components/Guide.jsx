@@ -11,24 +11,25 @@ const Guide = () => {
         </h2>
         <Col
           className="d-flex justify-content-center flex-grow-1"
-          xs={12}
+          xs={8}
           lg={8}>
           <div className="d-flex flex-column align-items-center g-4 my-4">
-            <div className="my-3 bg-body-tertiary">
+            <div className="my-3 bg-body-tertiary w-100">
               {" "}
               <img
                 src={inputs}
                 alt="inputs guide"
                 style={{ maxHeight: "100%" }}
+                className="img-fluid"
               />
             </div>
             <div className="d-flex flex-column justify-content-center align-items-center">
-              <p>
+              <p className="mx-2">
                 {" "}
                 HE/ H = Heat, in heat every character gets enhanced or new moves
                 available. You can activate heat by pressing 2+3!
               </p>
-              <p>
+              <p className="mx-2">
                 RA = Rage art! Rage it's a state where the player has only few
                 HP left, all moves deal more damage and you get a special
                 unblockable attack! the less hp You have the more dmg It deals

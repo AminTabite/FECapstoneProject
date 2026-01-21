@@ -4,3 +4,35 @@
   margin: 0;
   padding: 0;
 }
+
+footer div {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+footer h6 {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Footer senza margini MAI */
+footer .container-fluid,
+footer .container,
+footer .row,
+footer .col,
+footer .col * {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Estendi footer a schermo intero */
+footer {
+  position: relative;
+  left: 0;
+  right}
