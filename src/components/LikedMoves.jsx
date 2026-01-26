@@ -8,7 +8,8 @@ const LikedMoves = () => {
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState(false);
 
-  const endpoint = "http://localhost:5000/favorites";
+  const endpoint =
+    "https://capstone-project-t8-be-production.up.railway.app/favorites";
   const token = localStorage.getItem("token");
 
   const GetLikedMoves = async () => {
@@ -46,7 +47,7 @@ const LikedMoves = () => {
 
       if (!response.ok) {
         throw new Error(
-          `Errore nella cancellazione, status: ${response.status}`
+          `Errore nella cancellazione, status: ${response.status}`,
         );
       }
       console.log("Mossa preferita cancellata con successo");

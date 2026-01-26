@@ -12,7 +12,8 @@ const UtenteLogin = () => {
   const [errors, setErrors] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const endpoint = "http://localhost:5000/auth/login";
+  const endpoint =
+    "https://capstone-project-t8-be-production.up.railway.app/auth/login";
   const rolecontrol2 = useSelector((state) => state.main.role);
 
   if (rolecontrol2) return <Navigate to="/" />;

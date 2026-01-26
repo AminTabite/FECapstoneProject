@@ -12,8 +12,9 @@ const MoveSearchbar = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [duplicateMoveIndex, setDuplicateMoveIndex] = useState(null);
-  const endpoint = `http://localhost:5000/proxy/tekken/${characterName}`;
-  const endpoint1 = "http://localhost:5000/favorites";
+  const endpoint = `https://capstone-project-t8-be-production.up.railway.app/proxy/tekken/${characterName}`;
+  const endpoint1 =
+    "https://capstone-project-t8-be-production.up.railway.app/favorites";
 
   const normalizeCommand = (cmd) => {
     if (!cmd) return "";

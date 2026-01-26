@@ -16,7 +16,7 @@ const UpdateMe = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch(); //per cambiare ruolo , non si fa ma e' per dimostrazione
 
-  const endpoint = `http://localhost:5000/utenti/me`;
+  const endpoint = `https://capstone-project-t8-be-production.up.railway.app/utenti/me`;
 
   const getOldUser = async () => {
     setLoading(true);

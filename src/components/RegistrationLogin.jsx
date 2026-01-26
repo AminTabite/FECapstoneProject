@@ -21,7 +21,8 @@ const RegistrationLogin = () => {
   const rolecontrol = useSelector((state) => state.main.role);
   if (rolecontrol) return <Navigate to="/" />;
 
-  const endpoint = "http://localhost:5000/auth/register";
+  const endpoint =
+    "https://capstone-project-t8-be-production.up.railway.app/auth/register";
 
   const DoRegistration = async (payload) => {
     try {

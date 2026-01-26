@@ -13,7 +13,8 @@ const UserProfile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const endpoint = "http://localhost:5000/utenti/me";
+  const endpoint =
+    "https://capstone-project-t8-be-production.up.railway.app/utenti/me";
 
   const getProfile = async () => {
     setLoading(true);

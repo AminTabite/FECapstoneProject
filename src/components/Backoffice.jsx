@@ -11,7 +11,8 @@ const Backoffice = () => {
 
   const navigate = useNavigate();
 
-  const endpoint = "http://localhost:5000/utenti";
+  const endpoint =
+    "https://capstone-project-t8-be-production.up.railway.app/utenti";
 
   const Getusers = async () => {
     setLoading(true);
@@ -48,7 +49,7 @@ const Backoffice = () => {
 
       if (!response.ok) {
         throw new Error(
-          `Errore nella cancellazione utente, status: ${response.status}`
+          `Errore nella cancellazione utente, status: ${response.status}`,
         );
       }
       console.log("utente cancellato con successo");

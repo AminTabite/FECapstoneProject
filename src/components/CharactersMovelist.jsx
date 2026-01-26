@@ -19,8 +19,9 @@ const CharactersMovelist = () => {
   const currentMoves = moves.slice(indexOfFirstMove, indexOfLastMove);
   const totalPages = Math.ceil(moves.length / movesPerPage);
 
-  const endpoint = `http://localhost:5000/proxy/tekken/${params.name}`;
-  const endpoint1 = "http://localhost:5000/favorites";
+  const endpoint = `https://capstone-project-t8-be-production.up.railway.app/proxy/tekken/${params.name}`;
+  const endpoint1 =
+    "https://capstone-project-t8-be-production.up.railway.app/favorites";
 
   // fetch get delle movelist
   const Getmovelist = async () => {
